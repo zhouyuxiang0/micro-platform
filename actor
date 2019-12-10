@@ -1,0 +1,24 @@
+#!/bin/bash
+
+### 可配置项 ############################################
+backendFolder='nestjs-template'
+folderArr=[]
+
+########################################################
+currentPath=`pwd`
+. ./shell/func/reverseFn
+. ./shell/func/baseFn
+. ./shell/func/apiFn
+case $1 in
+'install')
+installBasement
+;;
+'start')
+startApi
+startReverse
+;;
+'stop')
+stopApi
+stopReverse
+;;
+esac
