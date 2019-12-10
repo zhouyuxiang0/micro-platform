@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function installBasement {
+  installNetWork
+}
+
+function runSuccess {
+  echo -e "check $1 [  \033[0;32mok\033[0m  ]";
+}
+
+function checkNetwork {
+  docker network ls | grep "application" >/dev/null 2>&1 && docker network ls | grep "database" >/dev/null 2>&1 
+  echo $?
+}
+
+function installNetWork {
+
+  if [ `checkNetwork` -ne 0 ] 
+  then 
+    createFolder 'basement/network'
+    cp -r shell/network basement
+    cd basement/network && ./start.sh >/dev/null 2>&1;cd $smartPath
+  else
+    runSuccess "network"
+  fi
+}
+
+# function startBasement {
+# }
+
+# function clearBasement {
+# }
+
+# function stopBasement {
+# }
+
+function createFolder {
+  if [ ! -d "./$1" ]; then
+    mkdir -p $1
+  fi
+}

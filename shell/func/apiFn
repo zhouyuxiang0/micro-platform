@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function installApi {
+    cd $backendFolder
+}
+
+function startApi {
+    cd $backendFolder && docker-compose up -d && cd $currentPath
+}
+
+function stopApi {
+    cd $backendFolder && docker-compose stop && cd $currentPath
+}
+
+function clearApi {
+    cd $backendFolder
+}

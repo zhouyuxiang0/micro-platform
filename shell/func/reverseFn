@@ -1,0 +1,9 @@
+#!/bin/bash
+
+function startReverse {
+    cd dev-entry && docker-compose up -d && cd $currentPath
+}
+
+function stopReverse {
+    cd dev-entry && docker-compose stop && cd $currentPath
+}
