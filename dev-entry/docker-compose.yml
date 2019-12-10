@@ -4,6 +4,8 @@ networks:
     backend:
         name: allinpay-backend
         driver: bridge
+    database:
+        external: true
 services: 
 ### NGINX Server #########################################
     nginx:
@@ -32,6 +34,7 @@ services:
             - "${MYSQL_PORT}:3306"
         networks:
             - backend
+            - database
         container_name: allinpay-mysql
 ### Redis #################################################
     redis:
