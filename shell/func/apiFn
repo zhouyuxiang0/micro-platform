@@ -1,17 +1,42 @@
 #!/bin/bash
 
-function installApi {
-    cd $backendFolder
+function execApiCommon {
+    case $1 in
+    'start')
+    traverseProjects 'docker-compose up -d'
+    ;;
+    'stop')
+    traverseProjects 'docker-compose stop'
+    ;;
+    'clear')
+    traverseProjects 'docker-compose down'
+    'restart')
+    traverseProjects 'docker-compose restart'
+    'recreate')
+    traverseProjects 'docker-compose down && docker-compose up -d'
+    esac
 }
 
-function startApi {
-    cd $backendFolder && docker-compose up -d && cd $currentPath
+function traverseProjects {
+    for project in ${projects[@]}
+    do
+        echo $project
+        cd $project && `$1` && cd $basepath
+    done
 }
 
-function stopApi {
-    cd $backendFolder && docker-compose stop && cd $currentPath
-}
+# function installApi {
+#     cd $backendFolder
+# }
 
-function clearApi {
-    cd $backendFolder
-}
+# function startApi {
+#     cd $backendFolder && docker-compose up -d && cd $currentPath
+# }
+
+# function stopApi {
+#     cd $backendFolder && docker-compose stop && cd $currentPath
+# }
+
+# function clearApi {
+#     cd $backendFolder
+# }
