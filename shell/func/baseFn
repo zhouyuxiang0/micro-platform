@@ -9,12 +9,14 @@ function runSuccess {
 }
 
 function checkNetwork {
+  # 获取dockernetwork 并匹配application  并禁止输出 
   docker network ls | grep "application" >/dev/null 2>&1 && docker network ls | grep "database" >/dev/null 2>&1 
   echo $?
 }
 
 function installNetWork {
 
+  # 执行结果不等于0  创建文件夹 复制脚本并；运行
   if [ `checkNetwork` -ne 0 ] 
   then 
     createFolder 'basement/network'

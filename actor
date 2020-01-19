@@ -2,10 +2,10 @@
 
 ### 可配置项 ############################################
 backendFolder='nestjs-template'
-folderArr=[]
+projects=("nestjs-template")
 
 ########################################################
-currentPath=`pwd`
+basepath=`pwd`
 . ./shell/func/reverseFn
 . ./shell/func/baseFn
 . ./shell/func/apiFn
@@ -14,11 +14,13 @@ case $1 in
 installBasement
 ;;
 'start')
-startApi
-startReverse
+execApiCommon 'start'
+# startApi
+# startReverse
 ;;
 'stop')
-stopApi
-stopReverse
+execApiCommon 'stop'
+# stopApi
+# stopReverse
 ;;
 esac
