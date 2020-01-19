@@ -10,10 +10,13 @@ function execApiCommon {
     ;;
     'clear')
     traverseProjects 'docker-compose down'
+    ;;
     'restart')
     traverseProjects 'docker-compose restart'
+    ;;
     'recreate')
     traverseProjects 'docker-compose down && docker-compose up -d'
+    ;;
     esac
 }
 
